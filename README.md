@@ -23,6 +23,8 @@ o resultado e o aprendizado.
 - [5. Troubleshooting](./5-troubleshooting) —
   casos reais de diagnóstico e resolução de problemas no ambiente
 
+- [6. Regra de Correlação - Wazuh](./6-wazuh-correlation-rule) — regra customizada de detecção de força bruta, com troubleshooting até o disparo confirmado
+
 ## Contexto
 
 Estudo prático voltado à certificação Microsoft SC-200 (Security Operations
