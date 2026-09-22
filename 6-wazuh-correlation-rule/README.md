@@ -35,7 +35,7 @@ Rodei o teste e não disparou nada, mesmo os eventos de base estando certos. Fui
 2. Usei o `wazuh-logtest` pra testar a regra isolada, fora do ambiente real, e conseguir ver o que estava acontecendo por dentro.
 3. Reparei no campo `firedtimes` da saída, que ia subindo a cada evento (1, 2, 3... até 7). No oitavo, apareceu a regra 100002 disparando, com level 10 e o mitre.id T1110.
 
-Then descobri que o problema não era a regra em si, era só eu não ter chegado no oitavo evento ainda dentro da mesma janela de tempo.
+Ai descobri que o problema não era a regra em si, era só eu não ter chegado no oitavo evento ainda dentro da mesma janela de tempo.
 
 ## Disco cheio no meio do processo
 
