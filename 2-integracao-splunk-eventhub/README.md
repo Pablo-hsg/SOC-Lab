@@ -22,6 +22,15 @@ administração multi-ferramenta (não depender de uma única plataforma de SIEM
 5. Instalação do Splunk Add-on for Microsoft Cloud Services no Splunk local
 6. Configuração do índice de recebimento no Splunk
 
+## Evidências
+
+
+<img width="1426" height="357" alt="Captura de tela 2026-09-22 161345" src="https://github.com/user-attachments/assets/08567526-f184-4b18-9196-a51224cfae1f" />
+
+
+Busca `index=main sourcetype="mscs:azure:eventhub"` retornando 1.181 eventos reais — confirma que os dados exportados do Sentinel chegaram e foram indexados corretamente no Splunk.
+
+
 ## Resultado
 Eventos reais de segurança da VM chegando no Splunk, pesquisáveis com
 `index=main sourcetype="mscs:azure:eventhub"`. O índice correto era `main`,
