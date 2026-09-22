@@ -1,30 +1,28 @@
-Playbook SOAR — Aprovação por e-mail + desabilitação de usuário no Entra ID
+# Playbook SOAR — Aprovação por e-mail + desabilitação de usuário no Entra ID
 
 Fluxo: incidente do Sentinel dispara o playbook → e-mail de aprovação é enviado → se aprovado, a conta do usuário é desabilitada automaticamente no Entra ID.
 
-Incidente do Sentinel dispara o playbook
-Playbook envia e-mail de aprovação
-Se aprovado → Update user no Entra ID, com accountEnabled = false
-Se rejeitado → fluxo termina sem ação
-Stack
+1. Incidente do Sentinel dispara o playbook
+2. Playbook envia e-mail de aprovação
+3. Se aprovado → `Update user` no Entra ID, com `accountEnabled = false`
+4. Se rejeitado → fluxo termina sem ação
+
+## Stack
 
 Microsoft Sentinel (Automation Rules + Playbooks) · Azure Logic Apps · Outlook connector · Microsoft Entra ID connector · Managed Identity
 
-O problema principal: RBAC em duas direções
+## Visão geral dos recursos
 
-O que mais travou aqui não foi lógica do fluxo, foi permissão. Existem duas roles diferentes, para direções diferentes, e as duas são necessárias:
+### Fluxo do playbook
 
-Playbook → Sentinel: a Managed Identity do Logic App precisa da role Microsoft Sentinel Responder, para conseguir ler/atualizar o incidente.
-Sentinel → Playbook: o principal de serviço Azure Security Insights (o próprio Sentinel) precisa da role Microsoft Sentinel Automation Contributor no Logic App, senão o playbook simplesmente não aparece como opção na Automation Rule — mesmo com a primeira permissão certa.
+<img width="844" height="590" alt="Captura de tela 2026-09-22 144940" src="https://github.com/user-attachments/assets/b9341851-ac7d-4950-a193-f95a23783f98" />
 
-Sem a segunda, a mensagem que aparece é só um genérico "playbook indisponível", sem apontar de qual lado falta a permissão. Vale sempre checar as duas.
+Estrutura do Logic App no designer: trigger de incidente do Sentinel, envio do e-mail de aprovação e a condição que decide entre desabilitar a conta ou encerrar sem ação.
 
-Para a ação de desabilitar a conta, precisou ainda de mais uma role: User Administrator no Entra ID para a mesma Managed Identity — a permissão do Sentinel não cobre alterar contas de usuário.
+### Mapa de recursos do resource group
 
-Outro detalhe que gerou confusão
+<img width="1643" height="441" alt="Captura de tela 2026-09-22 144744" src="https://github.com/user-attachments/assets/049cdf7b-76a7-492a-8812-938e06b1b0ed" />
 
-Rodar o playbook manualmente (sem um incidente real por trás) não dispara a lógica de aprovação, porque o trigger de incidente não tem entidade/usuário para avaliar. Só funcionou de fato testando com um incidente real associado a um usuário.
+Workbooks e soluções do Sentinel conectados ao workspace de um lado; os playbooks (Logic Apps) e suas API connections do outro — incluindo tentativas de teste que ficaram no ambiente (`PLAYBOOK-TESTE-PABLO`).
 
-Conceitos
-
-SOAR · Managed Identity vs autenticação por usuário · RBAC bidirecional entre recursos Azure · Automation Rules vs Playbooks
+## O problema principal: RBAC em duas direções
