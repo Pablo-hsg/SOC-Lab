@@ -27,6 +27,10 @@ Alterei o filtro da DCR de "Todos os Eventos" para "Minimal", reduzindo
 significativamente o volume de eventos coletados, mantendo apenas os
 security events mais relevantes.
 
+
+<img width="1895" height="724" alt="Captura de tela 2026-09-22 165031" src="https://github.com/user-attachments/assets/bc2a0b36-2859-404e-bd7f-358f7358d6ff" />
+
+
 **Aprendizado**
 Volume de ingestão em SIEM tem custo direto e escala rápido. Antes de
 configurar coleta de logs em produção, é essencial dimensionar o filtro
@@ -63,31 +67,4 @@ Saber reconhecer quando recriar do zero é mais eficiente do que continuar
 depurando é também uma decisão técnica válida — especialmente em ambiente
 de laboratório, onde o custo de recriar é baixo.
 
----
 
-## Caso 3: VM associada ao tenant errado
-
-**Sintoma**
-Uma VM do laboratório estava onboarded no Microsoft Defender apontando para
-o Organization ID de um tenant antigo, e não do tenant principal em uso.
-
-**O que investiguei**
-Ao revisar o Device Inventory do Defender, notei que o dispositivo aparecia
-vinculado a um tenant que não era mais utilizado, e não havia mais acesso
-disponível a esse tenant antigo para fazer o offboarding oficial por lá.
-
-**Causa**
-A VM havia sido originalmente onboarded usando uma chave de deployment
-gerada no tenant antigo, antes da migração para o tenant principal.
-
-**Solução**
-Apaguei a VM afetada e recriei do zero no grupo de recursos correto,
-reaproveitando a chave de deployment do Defender já gerada no tenant
-principal, e removi o registro fantasma do dispositivo antigo no Device
-Inventory.
-
-**Aprendizado**
-Ao trabalhar com múltiplos tenants, é essencial confirmar qual identidade
-organizacional está sendo usada antes de rodar qualquer script de
-onboarding, um erro nesse ponto só aparece bem depois, quando já é mais
-trabalhoso de corrigir.
