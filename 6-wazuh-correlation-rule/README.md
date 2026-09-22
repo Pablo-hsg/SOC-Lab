@@ -2,11 +2,17 @@
 
 Criei uma regra de correlação no Wazuh pra detectar tentativas repetidas de login falho via sudo/PAM. Já tinha feito algo parecido no Sentinel com KQL, esse é o mesmo conceito em outra ferramenta.
 
+<img width="1895" height="896" alt="Captura de tela 2026-09-14 170139" src="https://github.com/user-attachments/assets/4c317a60-894b-4864-89a2-caea0f9f5bae" />
+
 ## Ambiente
 
 - Wazuh Manager rodando em servidor Linux dedicado (Server + Dashboard)
 - Agente instalado numa VM Ubuntu 24.04, status Active
 - Fluxo: Agent → Manager → Indexer → Dashboard
+
+
+<img width="1781" height="454" alt="Captura de tela 2026-09-14 170112" src="https://github.com/user-attachments/assets/826d1caa-24b9-48e8-a768-12f1441c32b8" />
+
 
 ## O que fiz
 
@@ -35,13 +41,11 @@ Rodei o teste e não disparou nada, mesmo os eventos de base estando certos. Fui
 2. Usei o `wazuh-logtest` pra testar a regra isolada, fora do ambiente real, e conseguir ver o que estava acontecendo por dentro.
 3. Reparei no campo `firedtimes` da saída, que ia subindo a cada evento (1, 2, 3... até 7). No oitavo, apareceu a regra 100002 disparando, com level 10 e o mitre.id T1110.
 
-Ai descobri que o problema não era a regra em si, era só eu não ter chegado no oitavo evento ainda dentro da mesma janela de tempo.
 
-## Disco cheio no meio do processo
+<img width="875" height="436" alt="Captura de tela 2026-09-14 164317" src="https://github.com/user-attachments/assets/bcf6d02e-f5a0-46d9-b8ed-e56e6ebcecdb" />
 
-Em outro momento dessa sessão, o disco do Wazuh Manager encheu (o módulo vulnerability-detection consumiu uns 18GB sozinho). Isso derrubou o Indexer, que derrubou o Manager, que fez o Agent ficar caindo e reconectando toda hora. Resolvi parando o manager, apagando o cache do módulo, e desabilitando ele de vez no ossec.conf pra não repetir.
 
-Aprendi na marra que num SIEM, se qualquer parte do pipeline (Agent, Manager, Indexer, Dashboard) trava, tudo trava junto, e às vezes sem erro claro na tela.
+Aí descobri que o problema não era a regra em si, era só eu não ter chegado no oitavo evento ainda dentro da mesma janela de tempo.
 
 ## O que o Wazuh não tem
 
