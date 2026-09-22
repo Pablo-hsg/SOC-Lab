@@ -16,14 +16,14 @@ o resultado e o aprendizado.
 
 - [3. Threat Intelligence](./3-threat-intelligence) —
   ingestão de indicadores de comprometimento (IOCs) no Sentinel
-
-- [4. Identidade - Entra ID](./4-identity-entra-id) —
-  integração de sinais de identidade e login centralizado em VM
+  
 
 - [5. Troubleshooting](./5-troubleshooting) —
   casos reais de diagnóstico e resolução de problemas no ambiente
 
 - [6. Regra de Correlação - Wazuh](./6-wazuh-correlation-rule) — regra customizada de detecção de força bruta, com troubleshooting até o disparo confirmado
+
+- [7. SOAR Playbook - Aprovação por E-mail](./7-soar-playbook-entra-id) — aprovação por e-mail com desabilitação automática de usuário no Entra ID, via Sentinel + Logic Apps
 
 ## Contexto
 
