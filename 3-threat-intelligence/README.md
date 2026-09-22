@@ -18,6 +18,13 @@ A tabela usada foi a ThreatIntelIndicators, e não a ThreatIntelligenceIndicator
 atento a esse tipo de mudança de schema entre versões da plataforma, já que
 documentação desatualizada ainda referencia a tabela antiga.
 
+## Evidências
+
+<img width="1468" height="839" alt="Captura de tela 2026-09-22 162749" src="https://github.com/user-attachments/assets/cc5ab5c6-5f0f-40e0-a064-16e1b0375e43" />
+
+Os 20 indicadores fictícios de hash de arquivo, com origem "Lab Pessoal - Teste SC-200" e níveis de confiança variados, visíveis na tela de gestão de Threat Intelligence do Sentinel.
+
+
 ## Resultado
 Indicadores visíveis e consultáveis na tabela ThreatIntelIndicators do
 workspace, prontos para serem usados em Regras de Análise que cruzem esses
