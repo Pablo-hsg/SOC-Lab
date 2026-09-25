@@ -42,7 +42,9 @@ Stack: Microsoft Sentinel · Azure Automation (PowerShell) · Logic Apps · Viru
 
 
 
+## Código
 
+[Ver script da Runbook](./runbook-consulta-reputacao.ps1)
 
 
 
