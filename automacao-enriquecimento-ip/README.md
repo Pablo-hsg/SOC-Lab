@@ -4,6 +4,7 @@ Pipeline SOAR (Security Orchestration, Automation and Response) que enriquece au
 
 ## Diagrama da arquitetura
 
-![Pipeline SOAR IP](./imagens/diagrama-pipeline.png)
+<img width="1125" height="867" alt="diagrama-pipeline" src="https://github.com/user-attachments/assets/49dca457-223a-4e96-bbb3-218cb7e68aca" />
+
 
 Fluxo: uma Regra de Análise detecta uma condição e cria um Incidente → uma Regra de Automação escuta a criação do incidente e, se ele tiver um IP como entidade, dispara um Playbook → o Playbook extrai o IP do incidente e chama um Webhook → o Webhook aciona uma Runbook do Azure Automation, que consulta as três fontes e devolve um veredito consolidado.
