@@ -47,16 +47,3 @@ Rodei o teste e não disparou nada, mesmo os eventos de base estando certos. Fui
 
 Aí descobri que o problema não era a regra em si, era só eu não ter chegado no oitavo evento ainda dentro da mesma janela de tempo.
 
-## O que o Wazuh não tem
-
-Diferente do Sentinel, o Wazuh não tem uma aba de "Incidente" com status, atribuição, fechamento de caso. Ele só gera o alerta e para por aí. Pra ter esse fluxo de gestão de caso, normalmente conecta outra ferramenta em cima, tipo TheHive ou algum SOAR.
-
-## O que eu mudaria numa próxima vez
-
-- Variar os logs simulados (timestamp, PID) em vez de repetir a linha idêntica, pra ficar mais parecido com um ataque real
-- Testar com o timeframe/frequency ajustado com base em uso real, não só um número que fiz no chute
-- Conectar isso com uma ferramenta de gestão de caso pra fechar o ciclo completo
-
-## Relacionado
-
-Mesma técnica (T1110, força bruta) já trabalhada em [`1-pipeline-sentinel`](../1-pipeline-sentinel), lá com regra em KQL no Sentinel.
