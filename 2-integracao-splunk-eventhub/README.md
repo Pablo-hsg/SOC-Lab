@@ -29,16 +29,3 @@ administração multi-ferramenta (não depender de uma única plataforma de SIEM
 
 
 Busca `index=main sourcetype="mscs:azure:eventhub"` retornando 1.181 eventos reais — confirma que os dados exportados do Sentinel chegaram e foram indexados corretamente no Splunk.
-
-
-## Resultado
-Eventos reais de segurança da VM chegando no Splunk, pesquisáveis com
-`index=main sourcetype="mscs:azure:eventhub"`. O índice correto era `main`,
-e não `default` como veio configurado inicialmente no formulário — precisei
-corrigir isso durante o processo.
-
-## Aprendizado
-Entendi que a exportação de dados no Sentinel fica em Configurações > Regras
-de Exportação, não junto das Tabelas — não é óbvio à primeira vista. Também
-aprendi a importância de isolar recursos por Grupo de Recursos dedicado
-quando o objetivo é controlar custo de um experimento específico.
