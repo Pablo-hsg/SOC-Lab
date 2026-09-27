@@ -1,6 +1,6 @@
 # SOC-Lab
 
-Laboratório prático de segurança da informação, com projetos hands-on em detecção, resposta a incidentes, automação (SOAR) e gestão de identidade e acesso — utilizando Microsoft Sentinel, Microsoft Defender, Splunk, Wazuh e Microsoft Entra ID.
+Laboratório prático de segurança da informação, com projetos hands-on em detecção, resposta a incidentes, automação (SOAR) e gestão de identidade e acesso, utilizando Microsoft Sentinel, Microsoft Defender, Splunk, Wazuh e Microsoft Entra ID.
 
 Cada pasta documenta um caso real do ambiente: o objetivo, o que foi feito, o resultado e o aprendizado.
 
