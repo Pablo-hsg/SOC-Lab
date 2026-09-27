@@ -1,0 +1,31 @@
+# Integração Sentinel → Splunk via Event Hub
+
+## Objetivo
+Exportar dados de segurança do Microsoft Sentinel para o Splunk Enterprise,
+para comparar KQL com SPL sobre os mesmos dados reais e praticar
+administração multi-ferramenta (não depender de uma única plataforma de SIEM).
+
+## Ambiente
+- Microsoft Sentinel
+- Azure Event Hubs
+- Splunk Enterprise (instalação local)
+- Splunk Add-on for Microsoft Cloud Services
+
+## O que foi feito
+1. Criação de um Grupo de Recursos dedicado, isolado do resto do ambiente,
+   para controlar o custo da integração separadamente
+2. Configuração de um alerta de orçamento (budget alert) nesse grupo, para
+   monitorar o gasto da integração
+3. Criação de um namespace e um Hub de Eventos dentro dele
+4. Criação de uma Regra de Exportação de Dados no Sentinel, apontando a
+   tabela SecurityEvent para o Hub de Eventos
+5. Instalação do Splunk Add-on for Microsoft Cloud Services no Splunk local
+6. Configuração do índice de recebimento no Splunk
+
+## Evidências
+
+
+<img width="1426" height="357" alt="Captura de tela 2026-09-22 161345" src="https://github.com/user-attachments/assets/08567526-f184-4b18-9196-a51224cfae1f" />
+
+
+Busca `index=main sourcetype="mscs:azure:eventhub"` retornando 1.181 eventos reais — confirma que os dados exportados do Sentinel chegaram e foram indexados corretamente no Splunk.
